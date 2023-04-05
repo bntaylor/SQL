@@ -1,0 +1,27 @@
+CREATE TABLE clothing_dept (invoice_number INTEGER PRIMARY KEY, clothing_item TEXT, price INTEGER, aisle_number INTEGER, in_stock INTEGER);
+
+INSERT INTO clothing_dept VALUES 
+(0001, "adult swimwear", 29.99, 6, 34),
+(0002, "spring dresses", 24.99, 2, 16),
+(0003, "spring menswear", 34.99, 3, 27),
+(0004, "spring kids clothes", 11.99, 1, 24),
+(0005, "spring accessories", 6.99, 5, 47),
+(0006, "womens tops", 10.99, 7, 52),
+(0007, "womens bottoms", 11.99, 7, 63),
+(0008, "childrens swimwear", 17.99, 6, 42),
+(0009, "mens tops", 10.99, 8, 24),
+(0010, "mens bottoms", 11.99, 8, 35),
+(0011, "womens sleepwear", 17.99, 9, 49),
+(0012, "mens sleepwear", 19.99, 9, 37),
+(0013, "womens fitness", 29.99, 10, 64),
+(0014, "mens fitness", 24.99, 10, 58),
+(0015, "womens undergarments", 19.99, 11, 84);
+
+--display the database ordered by price
+SELECT * FROM clothing_dept ORDER BY price;
+
+--what are the 5 items with the most stock
+SELECT clothing_item, in_stock FROM clothing_dept ORDER BY in_stock DESC LIMIT 5;
+
+--what is the most expensive item
+SELECT clothing_item, price FROM clothing_dept ORDER BY price DESC LIMIT 1;
