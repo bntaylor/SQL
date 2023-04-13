@@ -1,0 +1,105 @@
+/* The data tables below provide information about the actors and their characters from the CW Television show Supernatural */
+
+CREATE TABLE supernatural_actors (id INTEGER PRIMARY KEY, actor_name TEXT, actor_age INTEGER);
+
+INSERT INTO supernatural_actors VALUES
+(1, "Jensen Ackles", 45),
+(2, "Jared Padalecki", 40),
+(3, "Misha Collins", 48),
+(4, "Mark Sheppard", 58),
+(5, "Mark Pellegrino", 58),
+(6, "Alexander Calvert", 32),
+(7, "Ruth Connell", 43),
+(8, "Robert Benedict", 52),
+(9, "Richard Speight Jr.", 53),
+(10, "Genevieve Padalecki", 42),
+(11, "Danneel Ackles", 44),
+(12, "Jim Beaver", 72),
+(13, "Jeffrey Dean Morgan", 56),
+(14, "Samantha Smith", 53),
+(15, "Felicia Day", 43),
+(16, "Kim Rhodes", 53),
+(17, "Kathryn Newton", 26),
+(18, "David Haydn-Jones", 45),
+(19, "Curtis Armstrong", 49),
+(20, "Timothy Omundson", 53);
+
+CREATE TABLE supernatural_characters (id INTEGER PRIMARY KEY, character_name TEXT, birth_year INTEGER);
+
+INSERT INTO supernatural_characters VALUES
+(1, "Dean Winchester", 1979),
+(2, "Sam Winchester", 1983),
+(3, "Castiel", 0),
+(4, "Crowley", 1661),
+(5, "Lucifer", 0),
+(6, "Jack Kline", 2017),
+(7, "Rowena MacLeod", 0),
+(8, "Chuck/God", 0),
+(9, "Archangel Gabriel", 0),
+(10, "Ruby", 0),
+(11, "Sister Jo", 0),
+(12, "Bobby Singer", 1950),
+(13, "John Winchester", 1954),
+(14, "Mary Winchester", 1954),
+(15, "Charlie Bradbury", 1985),
+(16, "Jody Mills", 1976),
+(17, "Claire Novak", 1997),
+(18, "Arthur Ketch", 1974),
+(19, "Metatron", 0),
+(20, "Cain", 0);
+
+CREATE TABLE supernatural_actors_active_since (id INTEGER PRIMARY KEY, active_since_year INTEGER);
+
+INSERT INTO supernatural_actors_active_since VALUES
+(1, 1996),
+(2, 1999),
+(3, 1998),
+(4, 1992),
+(5, 1987),
+(6, 2005),
+(7, 1998),
+(8, 1998),
+(9, 1984),
+(10, 2004),
+(11, 1999),
+(12, 1972),
+(13, 1991),
+(14, 1996),
+(15, 2001),
+(16, 1996),
+(17, 2002),
+(18, 1990),
+(19, 1983),
+(20, 1992);
+
+/* Show me a table that shows the actor's names and the year they became active in the industry. */
+
+SELECT supernatural_actors.actor_name, supernatural_actors_active_since.active_since_year FROM supernatural_actors
+    JOIN supernatural_actors_active_since
+    ON supernatural_actors.id = supernatural_actors_active_since.id;
+
+/* Show me a table that shows the actor's names next to the characters they play in the show. */
+
+SELECT supernatural_actors.actor_name, supernatural_characters.character_name FROM supernatural_actors
+    JOIN supernatural_characters
+    ON supernatural_actors.id = supernatural_characters.id;
+    
+/* What if I want to see a table with the actor's name, age and years active all together? */
+
+SELECT supernatural_actors.actor_name, supernatural_actors.actor_age, supernatural_actors_active_since.active_since_year FROM supernatural_actors
+    JOIN supernatural_actors_active_since
+    ON supernatural_actors.id = supernatural_actors_active_since.id;
+    
+/* How about a table that shows the actors name, their real age, and the birth year of the character they were playing? */
+
+SELECT supernatural_actors.actor_name, supernatural_actors.actor_age, supernatural_characters.birth_year as character_birth_year FROM supernatural_actors
+    JOIN supernatural_characters
+    ON supernatural_actors.id = supernatural_characters.id;
+    
+/* Here is a single table of all of the data from each table combined. */
+
+SELECT supernatural_actors.id, supernatural_actors.actor_name, supernatural_actors.actor_age, supernatural_actors_active_since.active_since_year, supernatural_characters.character_name, supernatural_characters.birth_year FROM supernatural_actors
+    JOIN supernatural_characters
+    ON supernatural_actors.id = supernatural_characters.id
+    JOIN supernatural_actors_active_since
+    ON supernatural_actors.id = supernatural_actors_active_since.id;
