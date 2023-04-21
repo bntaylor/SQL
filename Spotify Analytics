@@ -1,0 +1,18 @@
+SELECT * FROM SpotifyData;
+
+/* Who are the top 10 artists based on popularity? */
+SELECT artist_name FROM SpotifyData
+    GROUP BY artist_name
+    ORDER BY popularity DESC
+    LIMIT 10;
+    
+/* What is the average dancebility of each artist's music? */
+SELECT artist_name, AVG(danceability) FROM SpotifyData
+    GROUP BY artist_name
+    ORDER BY AVG(danceability) DESC;
+    
+/* Which artists released the top five longest songs in this database and what are the songs? */
+SELECT artist_name, track_name FROM SpotifyData
+    ORDER BY duration_ms DESC
+    LIMIT 5;
+ 
